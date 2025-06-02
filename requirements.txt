@@ -6,4 +6,3 @@ torch
 ultralytics
 firebase-admin
 cloudinary
-pip install torch==2.7.0+cpu --extra-index-url https://download.pytorch.org/whl/cpu
