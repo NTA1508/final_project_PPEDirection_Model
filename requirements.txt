@@ -4,4 +4,6 @@ opencv-python
 numpy
 torch
 ultralytics
-
+cv2
+firebase-admin
+cloudinary

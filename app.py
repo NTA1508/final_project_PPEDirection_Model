@@ -6,10 +6,8 @@ from ultralytics import YOLO
 from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, db
-import base64
 import cloudinary
 import cloudinary.uploader
-import cloudinary.api
 
 
 # Khởi tạo Firebase
@@ -60,27 +58,6 @@ def upload_image_to_cloudinary(image_path):
     except Exception as e:
         print("Upload thất bại:", e)
         return None
-
-
-# Hàm push dữ liệu vi phạm lên Firebase
-# def push_to_firebase(missing_ppe, image_path):
-#     try:
-#         with open(image_path, "rb") as img_file:
-#             image_base64 = base64.b64encode(img_file.read()).decode('utf-8')
-        
-#         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-#         data = {
-#             "timestamp": timestamp,
-#             "missing_ppe": list(missing_ppe),
-#             "image_base64": image_base64
-#         }
-
-#         ref = db.reference("violations")
-#         ref.push(data)
-#         print("Cảnh báo đã được đẩy lên Firebase.")
-#     except Exception as e:
-#         print("Lỗi khi đẩy dữ liệu lên Firebase:", e)
 
 def push_to_firebase(missing_ppe, image_path):
     image_url = upload_image_to_cloudinary(image_path)
