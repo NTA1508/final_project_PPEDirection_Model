@@ -8,6 +8,7 @@ import firebase_admin
 from firebase_admin import credentials, db
 import cloudinary
 import cloudinary.uploader
+from firebase_admin import firestore
 
 
 # Khởi tạo Firebase
@@ -58,9 +59,7 @@ def upload_image_to_cloudinary(image_path):
     except Exception as e:
         print("Upload thất bại:", e)
         return None
-
-from firebase_admin import firestore
-
+        
 def push_to_firebase(missing_ppe, image_path):
     image_url = upload_image_to_cloudinary(image_path)
     if image_url:
