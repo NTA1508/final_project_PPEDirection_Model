@@ -59,12 +59,13 @@ def upload_image_to_cloudinary(image_path):
         print("Upload thất bại:", e)
         return None
 
+from firebase_admin import firestore
+
 def push_to_firebase(missing_ppe, image_path):
     image_url = upload_image_to_cloudinary(image_path)
     if image_url:
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         data = {
-            "timestamp": timestamp,
+            "timestamp": firestore.SERVER_TIMESTAMP,  # Firebase tự động tạo timestamp
             "missing_ppe": list(missing_ppe),
             "image_url": image_url
         }
